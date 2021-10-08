@@ -40,13 +40,25 @@
 #         return a/b
 # print(foo5(a,b))
 
-#zadanie6
-
-for x in range(100):
-    x = int(input("Podaj liczbe: "))
-    x +=x
-    if(x>=100):
-        print("Osiągnięto sumę 100!")
-        break
+# #zadanie6
+#
+# for x in range(100):
+#     x = int(input("Podaj liczbe: "))
+#     x +=x
+#     if(x>=100):
+#         print("Osiągnięto sumę 100!")
+#         break
 
 #zadanie7
+lista =['mleko','kasza','makaron','wino']
+print(lista)
+def foo7(lista):
+    krotka = ""
+    for x in lista:
+        krotka[x]=lista[x]
+        return krotka
+        
+
+
+
+
