@@ -1,0 +1,52 @@
+# print("Hello world!")
+#
+# #zadanie1
+# a =input("Podaj pierwszą litere imienia: ")
+# b =input("Podaj Nazwisko: ")
+#
+# def foo1(a,b):
+#     return a+"."+b
+# print(foo1(a,b))
+#
+# #zadanie2
+# a =input("Podaj imie: ")
+# b =input("Podaj Nazwisko: ")
+#
+# def foo2(a,b):
+#     return a[0]+"."+b
+# print(foo2(a,b))
+#
+# #zadanie3
+# a=input("Podaj 2 pierwsze cyfry aktualnego roku: ")
+# b=input("Podaj 2 ostatnie cyfry aktualnego roku: ")
+# c=input("Podaj wiek użytkownika: ")
+# def foo3(a,b,c):
+#     wynik=a+b
+#     return int(wynik)-int(c)
+# print(foo3(a,b,c))
+#
+# #zadanie4
+# a = input("Podaj imie: ")
+# b = input("Podaj nazwisko: ")
+# def foo4(a,b,foo2):
+#     return foo2(a,b)
+# print(foo4(a,b,foo2))
+#
+# #zadanie5
+# a=int(input("Podaj liczbe a: "))
+# b=int(input("Podaj liczbe b: "))
+# def foo5(a,b):
+#     if(a>0 and b>0 and b!=0):
+#         return a/b
+# print(foo5(a,b))
+
+#zadanie6
+
+for x in range(100):
+    x = int(input("Podaj liczbe: "))
+    x +=x
+    if(x>=100):
+        print("Osiągnięto sumę 100!")
+        break
+
+#zadanie7
