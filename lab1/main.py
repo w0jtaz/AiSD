@@ -80,4 +80,13 @@
 #
 # print(foo9(2))
 
-#zadanie10
+# #zadanie10
+# def foo10(slowo):
+#     odwroconeSlowo = slowo[::-1]
+#     if(slowo==odwroconeSlowo):
+#         return ("Jest to palindrom!")
+#     else:
+#         return ("Nie jes to palindrom!")
+#
+# print(foo10("ala"))
+# print(foo10("kot"))
