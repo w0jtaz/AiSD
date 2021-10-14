@@ -49,11 +49,35 @@
 #         print("Osiągnięto sumę 100!")
 #         break
 
-#zadanie7
-lista =['mleko','kasza','makaron','wino']
-print(lista)
-def foo7(lista):
-    krotka = ""
-    for x in lista:
-        krotka[x]=lista[x]
-        return krotka
+# #zadanie7
+# lista =['mleko','kasza','makaron','wino']
+# print(lista)
+# def foo7(lista):
+#         return tuple(lista)
+# print(foo7(lista))
+
+# #zadanie8
+# def foo8():
+#     lista = []
+#     liczba = None
+#     n = int(input("Podaj ilość wartości do wprowadzenia: "))
+#     for x in range(n):
+#         liczba = int(input("Wprowadz wartosc: "))
+#         lista.append(liczba)
+#     return tuple(lista)
+# print(foo8())
+
+# #zadanie9
+# def foo9(numer_dnia):
+#     dzien={1: "poniedziałek",
+#            2: "wtorek",
+#            3: "sroda",
+#            4: "czwartek",
+#            5: "piatek",
+#            6: "sobota",
+#            7: "niedziela"}
+#     return dzien[numer_dnia]
+#
+# print(foo9(2))
+
+#zadanie10
