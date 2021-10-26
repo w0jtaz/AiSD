@@ -1,10 +1,8 @@
 from typing import Any
 
-
 class Node:
     value: Any
     next: 'Node'
-
 
 class LinkedList:
     head: Node
@@ -104,7 +102,6 @@ class LinkedList:
         return ln
 
 
-
 list_ = LinkedList()
 
 assert list_.head == None
@@ -140,7 +137,7 @@ list_.remove(second_node)
 
 assert str(list_) == '1 -> 5'
 
-print(list_.remove_last())
-print(list_)
-print(len(list_))
+# print(list_.remove_last())
+# print(list_)
+# print(len(list_))
 

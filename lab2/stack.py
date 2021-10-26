@@ -35,6 +35,7 @@ class Stack:
         return len(self._storage)
 
 stack = Stack()
+print(stack)
 
 assert len(stack) == 0
 
@@ -55,7 +56,11 @@ assert top_value == 1
 
 assert len(stack) == 2
 
+
 print(stack)
-print(stack.pop(),"\n")
+print("\n")
+print(stack.pop())
+print("\n")
 print(stack)
+print("\n")
 print(len(stack))
