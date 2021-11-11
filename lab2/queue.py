@@ -11,23 +11,22 @@ class Queue:
     def peek(self) -> Any:
         return self._storage.head.value
 
-    def enqueue(self, value) -> None:
-        self._storage.append(value)
+    def enqueue(self, element) -> None:
+        self._storage.append(element)
 
     def dequeue(self) -> Any:
         return self._storage.pop()
 
     def __str__(self) -> str:
-        if not self._storage.head:
+        queue = ""
+        if self._storage is None:
             return str(None)
-        h: Node = self._storage.head
-        out: str = ""
-        out += str(self._storage.head.value)
-
-        while h != self._storage.tail:
-            h = h.next
-            out += (', ' + str(h.value))
-        return out
+        i = self._storage.head
+        queue += str(self._storage.head.value)
+        while i != self._storage.tail:
+            i = i.next
+            queue += (', ' + str(i.value))
+        return queue
 
     def __len__(self) -> int:
         return len(self._storage)

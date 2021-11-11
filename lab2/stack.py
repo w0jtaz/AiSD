@@ -15,21 +15,21 @@ class Stack:
         return self._storage.remove_last()
 
     def __str__(self) -> str:
-        if not self._storage.head:
+        stack = ""
+        if self._storage.head is None:
             return str(None)
-        h: Node = self._storage.head
+        i = self._storage.head
         reverse_list: LinkedList = LinkedList()
-        out: str = ""
         reverse_list.push(self._storage.head.value)
-        while h != self._storage.tail:
-            h = h.next
-            reverse_list.push(h.value)
-        h = reverse_list.head
-        out += str(reverse_list.head.value)
-        while h != reverse_list.tail:
-            h = h.next
-            out += ('\n' + str(h.value))
-        return out
+        while i != self._storage.tail:
+            i = i.next
+            reverse_list.push(i.value)
+        i = reverse_list.head
+        stack += str(reverse_list.head.value)
+        while i != reverse_list.tail:
+            i = i.next
+            stack += ('\n' + str(i.value))
+        return stack
 
     def __len__(self) -> int:
         return len(self._storage)
