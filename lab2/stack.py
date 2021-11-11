@@ -16,19 +16,19 @@ class Stack:
 
     def __str__(self) -> str:
         stack = ""
+        temp = self._storage.head
         if self._storage.head is None:
             return str(None)
-        i = self._storage.head
         reverse_list: LinkedList = LinkedList()
         reverse_list.push(self._storage.head.value)
-        while i != self._storage.tail:
-            i = i.next
-            reverse_list.push(i.value)
-        i = reverse_list.head
+        while temp != self._storage.tail:
+            temp = temp.next
+            reverse_list.push(temp.value)
+        temp = reverse_list.head
         stack += str(reverse_list.head.value)
-        while i != reverse_list.tail:
-            i = i.next
-            stack += ('\n' + str(i.value))
+        while temp != reverse_list.tail:
+            temp = temp.next
+            stack += ('\n' + str(temp.value))
         return stack
 
     def __len__(self) -> int:

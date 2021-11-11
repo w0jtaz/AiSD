@@ -19,13 +19,13 @@ class Queue:
 
     def __str__(self) -> str:
         queue = ""
+        temp = self._storage.head
         if self._storage is None:
             return str(None)
-        i = self._storage.head
         queue += str(self._storage.head.value)
-        while i != self._storage.tail:
-            i = i.next
-            queue += (', ' + str(i.value))
+        while temp != self._storage.tail:
+            temp = temp.next
+            queue += (', ' + str(temp.value))
         return queue
 
     def __len__(self) -> int:

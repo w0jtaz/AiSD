@@ -33,14 +33,14 @@ class LinkedList:
     def node(self, at: int) -> Node:
         if self.head is None:
             return None
-        curr: Node = self.head
-        curr_i: int = 0
-        while curr_i < at:
-            if curr.next is None:
+        current: Node = self.head
+        current_temp = 0
+        while current_temp < at:
+            if current.next is None:
                 return None
-            curr = curr.next
-            curr_i += 1
-        return curr
+            current = current.next
+            current_temp += 1
+        return current
 
     def insert(self, value: Any, after: Node) -> None:
         if after is None:
@@ -78,8 +78,8 @@ class LinkedList:
             after.next = None
 
     def __str__(self) -> str:
-        temp = self.head
         list = ""
+        temp = self.head
         if temp is None:
             return str(None)
         while temp is not None:
@@ -92,13 +92,13 @@ class LinkedList:
 
     def __len__(self) -> int:
         current = self.head
-        len = 0
+        length = 0
         if current is None:
             return 0
         while current is not None:
-            len = len + 1
+            length = length + 1
             current = current.next
-        return len
+        return length
 
 
 list_ = LinkedList()
