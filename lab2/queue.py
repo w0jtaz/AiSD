@@ -8,12 +8,15 @@ class Queue:
     def __init__(self) -> None:
         self._storage = LinkedList()
 
+    #zwróci wartość pierwszego elementu w kolejce
     def peek(self) -> Any:
         return self._storage.head.value
 
+    #umieści nowy element na końcu kolejki
     def enqueue(self, element) -> None:
         self._storage.append(element)
 
+    #zwróci i usunie pierwszy element w kolejce
     def dequeue(self) -> Any:
         return self._storage.pop()
 

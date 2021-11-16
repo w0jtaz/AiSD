@@ -8,9 +8,11 @@ class Stack:
     def __init__(self) -> None:
         self._storage = LinkedList()
 
+    #umieści nową wartość "na szczycie" stosu, czyli zostanie dodana na końcu wewnętrznej listy
     def push(self, element: Any) -> None:
         self._storage.append(element)
 
+    #zwróci i usunie wartość ze szczytu stosu
     def pop(self) -> Any:
         return self._storage.remove_last()
 

@@ -68,9 +68,11 @@ print(factorial(10))
 print("\n")
 #zadanie6
 def prime(n: int):
-    if n/factorial(n)!=0:
-        return True
-    else:
-        return False
+    for i in range(1,n):
+        if (n % i) == 0:
+            return True
+        else:
+            return False
 
-print(prime(6))
+print(prime(4))
+

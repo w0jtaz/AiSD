@@ -12,6 +12,7 @@ class LinkedList:
         self.head = None
         self.tail = None
 
+    #umieszcza elementy na początku listy
     def push(self, value: Any) -> None:
         new: Node = Node()
         new.value = value
@@ -20,6 +21,7 @@ class LinkedList:
             self.tail = new
         self.head = new
 
+    #umieszcza elementy na końcu listy
     def append(self, value: Any) -> None:
         new: Node = Node()
         new.value = value
@@ -30,6 +32,7 @@ class LinkedList:
             self.tail.next = new
         self.tail = new
 
+    #zwraca węzeł znajdujący się na wskazanej pozycji
     def node(self, at: int) -> Node:
         if self.head is None:
             return None
@@ -42,6 +45,7 @@ class LinkedList:
             current_temp += 1
         return current
 
+    #wstawia nowy węzeł tuż za węzłem wskazanym w parametrze
     def insert(self, value: Any, after: Node) -> None:
         if after is None:
             return None
@@ -53,12 +57,14 @@ class LinkedList:
         new.next = after.next
         after.next = new
 
+    #usuwa i zwraca pierwszy element listy
     def pop(self) -> Node:
         popped: Node = self.head
         self.head = popped.next
         popped.next = None
         return popped.value
 
+    #usuwa i zwraca ostatni element listy
     def remove_last(self) -> Node:
         length = len(self)
         last: Node = self.tail
@@ -70,6 +76,7 @@ class LinkedList:
         self.tail.next = None
         return last.value
 
+    #przyjmuje węzeł jako argument, a następnie usuwa jego następnik
     def remove(self, after: Node) -> None:
         if after is None:
             return None
