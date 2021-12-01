@@ -1,10 +1,8 @@
 from typing import Any, List
 
 
-
 class TreeNode:
     value: Any
-    children: List['TreeNode']
 
     def __init__(self, value):
         self.left = None
@@ -35,7 +33,6 @@ def for_each_deep_first(node):
             for_each_deep_first(node.left)
             for_each_deep_first(node.right)
 
-
 class Tree:
     root: TreeNode
 
@@ -54,6 +51,21 @@ root.right.right = TreeNode('I')
 root.right.right.left = TreeNode('H')
 
 for_each_deep_first(root)
+print("\n")
 
-TreeNode.add('J')
-for_each_deep_first(root)
+for_each_deep_first(root.left)
+print("\n")
+
+for_each_deep_first(root.right)
+print("\n")
+
+for_each_deep_first(root.left.right)
+print("\n")
+
+for_each_deep_first(root.right.left)
+
+
+
+
+
+
