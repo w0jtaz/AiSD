@@ -39,6 +39,22 @@ def for_each_deep_first(node):
             for_each_deep_first(node.left_child)
             for_each_deep_first(node.right_child)
 
+
+def findLCA(root, n1, n2):
+    if root is None:
+        return None
+
+    if root.key == n1 or root.value == n2:
+        return root
+
+    left_child_lca = findLCA(root.left_child, n1, n2)
+    right_child_lca = findLCA(root.right_child, n1, n2)
+
+    if left_child_lca and right_child_lca:
+        return root
+
+    return left_child_lca if left_child_lca is not None else right_child_lca
+
 class BinaryTree:
     root: BinaryNode
 

@@ -49,7 +49,6 @@ class BinaryNode:
             self.right_child.traverse_pre_order(visit)
 
 
-
 class BinaryTree:
     root: BinaryNode
 
@@ -65,46 +64,52 @@ class BinaryTree:
     def traverse_pre_order(self, visit: Callable[[Any], None]) -> None:
         self.root.traverse_pre_order(visit)
 
+
     def show(self) -> None:
-        tree = treelib.Tree()
+        binary_tree = treelib.Tree()
+        binary_tree.create_node(str(self.root.value), str(self.root.value))
 
-        tree.create_node(str(self.root.value), str(self.root.value))
-
-        def add_edge(node: 'BinaryNode') -> None:
+        def createShow(node: 'BinaryNode') -> None:
             if node.left_child is not None:
-                tree.create_node(str(node.left_child.value), str(node.left_child.value), parent=str(node.value))
+                binary_tree.create_node(str(node.left_child.value), str(node.left_child.value), parent=str(node.value))
             if node.right_child is not None:
-                tree.create_node(str(node.right_child.value), str(node.right_child.value), parent=str(node.value))
+                binary_tree.create_node(str(node.right_child.value), str(node.right_child.value), parent=str(node.value))
 
-        def show(self) -> None:
-            tree = treelib.Tree()
+        self.traverse_pre_order(createShow)
+        binary_tree.show()
 
-            treelib.create_node(str(self.root.value), str(self.root.value))
+def closest_parent(tree: BinaryTree, first_node: BinaryNode, second_node: BinaryNode) -> BinaryNode:
+    if tree is first_node or tree is second_node:
+        return tree
+    elif tree is None:
+        return None
 
-        def add_edge(node: 'BinaryNode') -> None:
-            if node.left_child is not None:
-                tree.create_node(str(node.left_child.value), str(node.left_child.value), parent=str(node.value))
-            if node.right_child is not None:
-                tree.create_node(str(node.right_child.value), str(node.right_child.value), parent=str(node.value))
+    left = closest_parent(tree.left_child, first_node, second_node)
+    right = closest_parent(tree.right_child, first_node, second_node)
 
-        self.traverse_pre_order(add_edge)
-        tree.show()
-
-
-
-tree = BinaryTree(10)
-tree.root.add_left_child(9)
-tree.root.add_right_child(2)
-tree.root.left_child.add_left_child(1)
-tree.root.left_child.add_right_child(4)
-tree.root.right_child.add_left_child(3)
-tree.root.right_child.add_right_child(6)
+    if left is not None:
+        return left
+    elif right is not None and left is not None:
+        return tree
+    else:
+        return right
 
 
-tree.show()
 
-assert tree.root.value == 10
-assert tree.root.right_child.value == 2
-assert tree.root.right_child.is_leaf() is False
-assert tree.root.left_child.left_child.value == 1
-assert tree.root.left_child.left_child.is_leaf() is True
+binary_tree = BinaryTree(10)
+binary_tree.root.add_left_child(9)
+binary_tree.root.add_right_child(2)
+binary_tree.root.left_child.add_left_child(1)
+binary_tree.root.left_child.add_right_child(4)
+binary_tree.root.right_child.add_left_child(3)
+binary_tree.root.right_child.add_right_child(6)
+
+binary_tree.show()
+print(closest_parent(binary_tree.root, binary_tree.root.left_child.right_child, binary_tree.root.left_child.left_child.left_child))
+
+assert binary_tree.root.value == 10
+assert binary_tree.root.right_child.value == 2
+assert binary_tree.root.right_child.is_leaf() is False
+assert binary_tree.root.left_child.left_child.value == 1
+assert binary_tree.root.left_child.left_child.is_leaf() is True
+
