@@ -77,21 +77,23 @@ class BinaryTree:
         self.root.traverse_pre_order(visit)
 
     # wyświetla drzewo w formie graficznej
-    def show(self) -> None:
+    def show(self):
         binary_tree = treelib.Tree()
         binary_tree.create_node(str(self.root.value), str(self.root.value))
 
+        # odwołanie się do podrzędnych węzłów left_child i right_child
         def binary_children(node: 'BinaryNode'):
             if node.left_child != None:
                 binary_tree.create_node(str(node.left_child.value), str(node.left_child.value), parent=str(node.value))
             if node.right_child != None:
                 binary_tree.create_node(str(node.right_child.value), str(node.right_child.value), parent=str(node.value))
 
+        # wzdłużne przejście po podrzędnych węzłach - dzieciach
         self.traverse_pre_order(binary_children)
         binary_tree.show()
 
 # zwraca najbliższy wspólny węzeł nadrzędny przekazanych węzłów first_node->n1 , second_node ->n2
-def closest_parent(binary_tree: BinaryTree, n1: BinaryNode, n2: BinaryNode) -> BinaryNode:
+def closest_parent(binary_tree: BinaryTree, n1: BinaryNode, n2: BinaryNode):
     if binary_tree == n1 or binary_tree == n2:
         return binary_tree
     elif binary_tree == None:
@@ -104,7 +106,7 @@ def closest_parent(binary_tree: BinaryTree, n1: BinaryNode, n2: BinaryNode) -> B
         return binary_tree
     elif left != None:
         return left
-    else:
+    elif right != None:
         return right
 
 
@@ -128,6 +130,8 @@ print("Closest parent of (1,5): ",closest_parent(binary_tree.root, binary_tree.r
 
 # wyszukiwanie nadrzędnego węzła dla pary (4,7)
 print("Closest parent of (4,7): ",closest_parent(binary_tree.root, binary_tree.root.right_child.left_child, binary_tree.root.right_child.right_child))
+
+print("Closest parent of (None, None): ",closest_parent(binary_tree.root, None, None))
 
 # testy poprawności implementacji
 assert binary_tree.root.value == 10
