@@ -21,6 +21,8 @@ class BinaryNode:
     def is_leaf(self):
         if (self.right_child == None) and (self.left_child == None):
             return True
+        elif (self.right_child != None) and (self.left_child != None):
+            return False
         else:
             return False
 
@@ -78,10 +80,12 @@ class BinaryTree:
 
     # wyświetla drzewo w formie graficznej
     def show(self):
+        # utworzenie reprezentacji drzewa za pomocą biblioteki TreeLib
         binary_tree = treelib.Tree()
         binary_tree.create_node(str(self.root.value), str(self.root.value))
 
         # odwołanie się do podrzędnych węzłów left_child i right_child
+        # jeżeli istnieją to tworzymy z nich Node z wartościami
         def binary_children(node: 'BinaryNode'):
             if node.left_child != None:
                 binary_tree.create_node(str(node.left_child.value), str(node.left_child.value), parent=str(node.value))
@@ -90,33 +94,57 @@ class BinaryTree:
 
         # wzdłużne przejście po podrzędnych węzłach - dzieciach
         self.traverse_pre_order(binary_children)
-        binary_tree.show()
 
-# zwraca najbliższy wspólny węzeł nadrzędny przekazanych węzłów first_node->n1 , second_node ->n2
-def closest_parent(binary_tree: BinaryTree, n1: BinaryNode, n2: BinaryNode):
-    if binary_tree == n1 or binary_tree == n2:
+        # wyświetlenie drzewa
+        binary_tree.show(line_type="ascii-emv")
+
+# zwraca najbliższy wspólny węzeł nadrzędny przekazanych węzłów first_node->node1 , second_node ->node2
+def closest_parent(binary_tree: BinaryTree, node1: BinaryNode, node2: BinaryNode):
+
+    # jeżeli node1 lub node2 istnieją to zwracamy drzewo postaci instancji binary_tree z treelib
+    if binary_tree == node1 or binary_tree == node2:
         return binary_tree
+
+    # jeżeli binary_tree jest puste, nieokreślone to zwracamy None
     elif binary_tree == None:
         return None
 
-    left = closest_parent(binary_tree.left_child, n1, n2)
-    right = closest_parent(binary_tree.right_child, n1, n2)
+    # przeszukanie z lewej strony
+    left = closest_parent(binary_tree.left_child, node1, node2)
 
+    # przeszkanie z prawej strony
+    right = closest_parent(binary_tree.right_child, node1, node2)
+
+    # jeżeli lewa i prawa strona nie jest pusta to zwracamy drzewo binarne
     if left != None and right != None:
         return binary_tree
     elif left != None:
         return left
     elif right != None:
         return right
+    else:
+        return None
 
 
-# wartość w korzeniu drzewa wynosi 10
+# dodajemy korzeń, root, jego wartość wynosi 10
 binary_tree = BinaryTree(10)
+
+# dodajemy lewe dziecko
 binary_tree.root.add_left_child(8)
+
+# dodajemy prawe dziecko
 binary_tree.root.add_right_child(2)
+
+# dodajemy lewego potomka lewemu dziecku
 binary_tree.root.left_child.add_left_child(1)
+
+# dodajemy prawego potomka lewemu dziecku
 binary_tree.root.left_child.add_right_child(5)
+
+# dodajemy lewego potomka prawemu dziecku
 binary_tree.root.right_child.add_left_child(4)
+
+# dodajemy prawego potomka lewemu dziecku
 binary_tree.root.right_child.add_right_child(7)
 
 # drukujemy drzewo na ekran
@@ -131,11 +159,33 @@ print("Closest parent of (1,5): ",closest_parent(binary_tree.root, binary_tree.r
 # wyszukiwanie nadrzędnego węzła dla pary (4,7)
 print("Closest parent of (4,7): ",closest_parent(binary_tree.root, binary_tree.root.right_child.left_child, binary_tree.root.right_child.right_child))
 
+# wyszukiwanie nadrzędnego węzła dla pary (2,4)
+print("Closest parent of (2,4): ",closest_parent(binary_tree.root, binary_tree.root.right_child, binary_tree.root.right_child.left_child))
+
+# wyszukiwanie nadrzędnego węzła dla pary (1,8)
+print("Closest parent of (1,8): ",closest_parent(binary_tree.root, binary_tree.root.left_child.left_child, binary_tree.root.left_child))
+
+# wyszukiwanie nadrzędnego węzła dla pary (5,7)
+print("Closest parent of (5,7): ",closest_parent(binary_tree.root, binary_tree.root.left_child.right_child, binary_tree.root.right_child.right_child))
+
+# wyszykiwanie nadrzędnego węzła jeżeli argumenty first_node i second_node nie są określone -> None
 print("Closest parent of (None, None): ",closest_parent(binary_tree.root, None, None))
 
+
+
 # testy poprawności implementacji
+
+# wartość w korzeniu drzewa wynosi 10
 assert binary_tree.root.value == 10
+
+# wartość prawego dziecka korzenia wynosi 2
 assert binary_tree.root.right_child.value == 2
+
+# prawe dziecko nie jest liściem
 assert binary_tree.root.right_child.is_leaf() is False
+
+# wartość skrajnie lewego liścia drzewa wynosi 1
 assert binary_tree.root.left_child.left_child.value == 1
+
+# skrajnie prawe dziecko jest liściem
 assert binary_tree.root.left_child.left_child.is_leaf() is True
